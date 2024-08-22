@@ -26,7 +26,7 @@ class CategoryController extends Controller
             'nome' => ['required', 'string', 'max:255'],
         ]);
 
-        $category = Category::create($request->only(['name']));
+        $category = Category::create($request->only(['nome']));
 
         return new CategoryResource($category);
     }
