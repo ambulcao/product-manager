@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -35,7 +36,9 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+        
         return new UserResource($user);
+
     }
 
     /**
@@ -43,7 +46,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return new UserResource($user);
     }
 
     /**
@@ -51,7 +54,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => ['string', 'max:255'],
+            'email' => ['email', Rule::unique('users')->ignore($user->id)],
+        ]);
+
+        $user->update($request->only(['name','email']));
+
+        return new UserResource($user);
     }
 
     /**

@@ -14,6 +14,10 @@ class ProductResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
+        //Log::debug($this->resolve($request));
+        //dd($this);
+
         return [
             'nome' => $this->nome,
             'descricao' => $this->descricao,

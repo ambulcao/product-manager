@@ -18,7 +18,7 @@ class Category extends Model
         'nome', 
     ];
 
-    // Defina o relacionamento com os produtos (se necessário)
+    // Relacionamento com os produtos
     public function products()
     {
         return $this->hasMany(Product::class);

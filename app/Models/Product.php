@@ -29,11 +29,11 @@ class Product extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'data_de_validade' => 'date', // Certifique-se de que a data seja armazenada como um objeto de data
-        'preco' => 'float' // Ou 'double', dependendo do seu tipo de dados exato no banco de dados
+        'data_de_validade' => 'date', 
+        'preco' => 'float' 
     ];
 
-    // Define o relacionamento com a categoria (se você tiver um modelo Category)
+    // Relacionamento com a categoria
     public function category()
     {
         return $this->belongsTo(Category::class);
